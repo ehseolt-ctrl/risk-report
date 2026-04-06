@@ -630,7 +630,7 @@ const CONFIG = {
   MAX_IMAGE_BYTES: 5 * 1024 * 1024,
 
   // 4) ความกว้างสูงสุดที่จะ resize รูป (px) — ลดขนาดก่อนส่ง
-  IMAGE_MAX_WIDTH: 1280,
+  IMAGE_MAX_WIDTH: 800,
 };
 
 /* ══════════════════════════════════════════════════════════════
@@ -745,7 +745,7 @@ function resizeAndConvertToBase64(file, maxWidth) {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         // แปลงเป็น base64 JPEG quality 0.85
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
         resolve(dataUrl.split(",")[1]); // ตัด "data:image/jpeg;base64," ออก
       };
       img.onerror = reject;
