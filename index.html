@@ -849,7 +849,9 @@ async function handleSubmit() {
     // ── POST ไป Power Automate ──
     const response = await fetch(CONFIG.POWER_AUTOMATE_URL, {
       method:  "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+  "Content-Type": "application/json",
+},
       body:    JSON.stringify(payload),
     });
 
