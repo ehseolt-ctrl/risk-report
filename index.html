@@ -847,15 +847,23 @@ async function handleSubmit() {
 
   try {
     // ── POST ไป Power Automate ──
-   const response = await fetch(CONFIG.POWER_AUTOMATE_URL, {
-  method:  "POST",
+ const response = await fetch(CONFIG.POWER_AUTOMATE_URL, {
+  method: "POST",
   headers: { 
-    "Content-Type": "application/json",
-    "Accept": "*/*",
+    "Content-Type": "application/json"
   },
-  mode: "no-cors",
-  body:    JSON.stringify(payload),
+  body: JSON.stringify(payload),
 });
+
+// 👇 เพิ่ม debug ตรงนี้
+const text = await response.text();
+console.log("Status:", response.status);
+console.log("Response:", text);
+
+// 👇 เช็ค error จริง
+if (!response.ok) {
+  throw new Error("Power Automate Error: " + text);
+}
 
     // no-cors mode ไม่สามารถเช็ค response ได้
 // ถือว่าสำเร็จเลย
